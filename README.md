@@ -19,10 +19,8 @@ This Web Application catch this request and do something accordingly. For now, i
 
 * Open the solution in Visual Studio
 * Edit the configurations in appsettings.json
-* 
-### Local Tests
-
-
+* Validate the configuration by Right clicking on wwwroot/test.html, show in browser, and do some basic tests
+* Publish the webapp on Azure. 
 
 ## Facebook Configuration :
 
