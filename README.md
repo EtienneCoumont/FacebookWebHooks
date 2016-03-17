@@ -17,6 +17,8 @@ This Web Application catch this request and do something accordingly. For now, i
 
 ## Configuration :
 
+### Create the Webhook
+
 * Go to the Dashboard of your Facebook Application : https://developers.facebook.com/apps/
 * Click the Webhooks menu
 * New Subscription > Page
@@ -24,6 +26,16 @@ This Web Application catch this request and do something accordingly. For now, i
  * Verify Token : The same one as in appsettings.json
  * Subscriptions Fields : Select the fields you're interested in
  
+### Make your page subscribe to your app
+
+* Open the Graph API Explorer : https://developers.facebook.com/tools/explorer/
+* On the top right Combo Box, select your Application
+* Just below, in the Token ComboBox, select your Page.
+* Select the verb POST for the request
+* Enter the path : {your-page-id}/subscribed_apps
+* Submit : you should get a success.
+
+
 ## TODO :
 
 * Signature verification
