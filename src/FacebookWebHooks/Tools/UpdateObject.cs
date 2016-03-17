@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TestWebHooks.Tools
+namespace FacebookWebHooks
 {
+    /// <summary>
+    /// Used for json deserialisation
+    /// </summary>
     public class UpdateObject
     {
         public ObjectEnum Object { get; set; }

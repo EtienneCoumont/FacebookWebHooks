@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacebookWebHooks.Tools
+namespace FacebookWebHooks
 {
     public static class Hash
     {

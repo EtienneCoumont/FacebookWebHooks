@@ -28,6 +28,7 @@ namespace FacebookWebHooks
         {
             services.AddOptions();
             services.Configure<FacebookOptions>(Configuration.GetSection(nameof(FacebookOptions)));
+            services.Configure<MailOptions>(Configuration.GetSection(nameof(MailOptions)));
 
             // Add framework services.
             services.AddMvc();
