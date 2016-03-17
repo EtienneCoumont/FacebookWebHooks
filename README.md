@@ -26,7 +26,7 @@ This Web Application catch this request and do something accordingly. For now, i
  * Verify Token : The same one as in appsettings.json
  * Subscriptions Fields : Select the fields you're interested in
  
-### Make your page subscribe to your app
+### Make your application subscribe to your page
 
 * Open the Graph API Explorer : https://developers.facebook.com/tools/explorer/
 * On the top right Combo Box, select your Application
