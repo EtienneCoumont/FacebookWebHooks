@@ -15,7 +15,16 @@ This Web Application catch this request and do something accordingly. For now, i
 * A Facebook Application (you can create one for free here : https://developers.facebook.com/)
 * You must be Admin of a page on Facebook
 
-## Configuration :
+## Instructions
+
+* Open the solution in Visual Studio
+* Edit the configurations in appsettings.json
+* 
+### Local Tests
+
+
+
+## Facebook Configuration :
 
 ### Create the Webhook
 
