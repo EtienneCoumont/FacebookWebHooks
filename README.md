@@ -1,6 +1,12 @@
 # FacebookWebHooks
 
-This project shows how to use Facebook WebHooks with ASP.Net 5 Web API
+This project is a sample code to show how to use Facebook WebHooks with ASP.Net 5 Web API.
+
+## Summary
+
+Whenever something happen on your Facebook Page, Facebook will send a request to your server. (visit https://developers.facebook.com/docs/graph-api/webhooks to know more about Facebook Webhooks)
+
+This Web Application catch this request and do something accordingly. For now, it just sends a mail with the changes.
 
 ## Prerequisites :
 
@@ -17,5 +23,9 @@ This project shows how to use Facebook WebHooks with ASP.Net 5 Web API
  * Verify Token : The same one as in appsettings.json
  * Subscriptions Fields : Select the fields you're interested in
  
- 
+## TODO :
+
+* Signature verification
+* More tests
+
  
