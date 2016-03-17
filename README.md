@@ -43,9 +43,17 @@ This Web Application catch this request and do something accordingly. For now, i
 * Submit : you should get a success.
 
 
+## It's done !
+
+From now on, every time a new status or photo is posted on your page, you will get an email.
+
+Feel free to adapt this application to any scenario you can imagine. Like :
+- When I post something on Facebook, create a new blog post on my Drupal / Wordpress website.
+- When I add a photo to Facebook, put it on tumbler too.
+- ...
+
 ## TODO :
 
-* Signature verification
-* More tests
+* More tests for various potential events
 
  
