@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Validation test</title>
+    <style>
+        textarea {
+            width: 800px;
+            height: 120px;
+        }
+    </style>
+    <script src="jquery-2.2.1.min.js"></script>
+    <script>
+        $(function () {
+            $('button').click(function () {
+                var div = $(this).parent();
+                var json = div.children('textarea').val();
+                var status = div.children('p');
+                status.html('Posting to webhook ...');
+                $.post('api/webhooks', json, function (data) {
+                    status.html('Success. You should receive new mail soon.');
+                }).fail(function () {
+                    status.html('Something went wrong. Enable stdoutLog in Web.config and check the log file wwwroot/*.log');
+                })
+                ;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        Before launching local tests, ensure the option <b>ShouldVerifySignature</b> is set to false in appsettings.json
+    </div>
+    <div>
+        <h1>New page status</h1>
+        <textarea>{"object":"page","entry":[{"id":"123465789","time":1458132302,"changes":
+[{"field":"feed","value":{"item":"status","verb":"add","post_id":"123456798_12345679","sender_id":123456789,
+"published":1,"created_time":1458132301,"message":"This is my new status",
+"sender_name":"Obiwan Kenobi"}}]}]}</textarea>
+        <button>Test it</button>
+        <p></p>
+    </div>
+    <div>
+        <h1>New photo</h1>
+        <textarea>{"object":"page","entry":[{"id":"123456789","time":1458135329,"changes":
+[{"field":"feed","value":{"item":"photo","created_time":1458135278,"published":1,
+"verb":"add","photo_id":123456789,"post_id":"123456789_123456789",
+"sender_id":123456789,"message":"Hey ! Have a look at my new photo !","link":"https://somedomain.com/photo.jpg",
+"sender_name":"Luke Skywalker"}}]}]}
+        </textarea>
+        <button>Test it</button>
+        <p></p>
+    </div>
+</body>
+</html>
