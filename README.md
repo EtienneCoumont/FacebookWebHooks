@@ -2,11 +2,13 @@
 
 This project is a sample code to show how to use Facebook WebHooks with ASP.Net 5 Web API.
 
+
 ## Summary
 
 Whenever something happen on your Facebook Page, Facebook will send a request to your server. (visit https://developers.facebook.com/docs/graph-api/webhooks to know more about Facebook Webhooks)
 
 This Web Application catch this request and do something accordingly. For now, it just sends a mail with the changes.
+
 
 ## Prerequisites :
 
@@ -15,12 +17,14 @@ This Web Application catch this request and do something accordingly. For now, i
 * A Facebook Application (you can create one for free here : https://developers.facebook.com/)
 * You must be Admin of a page on Facebook
 
+
 ## Instructions
 
 * Open the solution in Visual Studio
 * Edit the configurations in appsettings.json
 * Validate the configuration by Right clicking on wwwroot/test.html, show in browser, and do some basic tests
 * Publish the webapp on Azure. 
+
 
 ## Facebook Configuration :
 
@@ -33,7 +37,7 @@ This Web Application catch this request and do something accordingly. For now, i
  * Verify Token : The same one as in appsettings.json
  * Subscriptions Fields : Select the fields you're interested in
  
-### Make your application subscribe to your page
+### Make your page subscribe to your app
 
 * Open the Graph API Explorer : https://developers.facebook.com/tools/explorer/
 * On the top right Combo Box, select your Application

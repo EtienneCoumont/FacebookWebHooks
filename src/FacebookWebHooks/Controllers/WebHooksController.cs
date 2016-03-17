@@ -56,6 +56,21 @@ namespace FacebookWebHooks.Controllers
                     json = sr.ReadToEnd();
                 }
 
+                if (_fbOptions.ShouldVerifySignature)
+                {
+                    var signatures = this.Request.Headers.Where(h => h.Key == "X-Hub-Signature").ToArray();
+                    if (signatures.Length == 0)
+                        throw new Exception("X-Hub-Signature not found");
+                    if (signatures.Length >= 2)
+                        throw new Exception("Many X-Hub-Signature found");
+                    string headerHash = signatures[0].Value;
+                    string myHash = Hash.ComputeHash(_fbOptions.AppSecret, json);
+                    if (headerHash == null || myHash == null)
+                        throw new Exception("Null hash");
+                    if (!myHash.Equals(headerHash, StringComparison.OrdinalIgnoreCase))
+                        throw new Exception($"Hash did not match. Expected {myHash}. But header was {headerHash}");
+                }
+
                 StringBuilder sb = new StringBuilder();
                 WriteStory(sb, json);
                 sb.AppendLine();
@@ -68,7 +83,7 @@ namespace FacebookWebHooks.Controllers
             }
             catch (Exception ex)
             {
-                Mail.SendMail(_mailOptions, ex.Message);
+                Mail.SendMail(_mailOptions, "WebHook Error : " + ex.Message);
             }
         }
 
