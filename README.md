@@ -12,9 +12,9 @@ This Web Application catch this request and do something accordingly. For now, i
 
 ## Prerequisites :
 
-* Visual Studio 2015 (Community Version is freely available)
-* An Azure Account (optional, you can publish your webapp wherever you want)
-* A Facebook Application (you can create one for free here : https://developers.facebook.com/)
+* Visual Studio 2015 (Community Version is downloadable for free)
+* An Azure Account (get an evaluation account for free : https://account.windowsazure.com )
+* A Facebook Application (you can create one for free : https://developers.facebook.com/ )
 * You must be Admin of a page on Facebook
 
 
@@ -23,7 +23,7 @@ This Web Application catch this request and do something accordingly. For now, i
 * Open the solution in Visual Studio
 * Edit the configurations in appsettings.json
 * Validate the configuration by Right clicking on wwwroot/test.html, show in browser, and do some basic tests
-* Publish the webapp on Azure. 
+* Right-click on the project, "Publish..." and select your azure account. 
 
 
 ## Facebook Configuration :
@@ -47,9 +47,17 @@ This Web Application catch this request and do something accordingly. For now, i
 * Submit : you should get a success.
 
 
+## It's done !
+
+From now on, every time a new status or photo is posted on your page, you will get an email.
+
+Feel free to adapt this application to any scenario you can imagine. Like :
+- When I post something on Facebook, create a new blog post on my Drupal / Wordpress website.
+- When I add a photo to Facebook, put it on tumbler too.
+- ...
+
 ## TODO :
 
-* Signature verification
-* More tests
+* More tests for various potential events
 
  
