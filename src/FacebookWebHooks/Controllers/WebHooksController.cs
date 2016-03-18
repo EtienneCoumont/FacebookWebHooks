@@ -48,14 +48,25 @@ namespace FacebookWebHooks.Controllers
         [HttpPost]
         public void Post()
         {
+            string json;
             try
             {
-                string json;
                 using (StreamReader sr = new StreamReader(this.Request.Body))
                 {
                     json = sr.ReadToEnd();
                 }
+            }
+            catch(Exception ex)
+            {
+                _log.LogCritical("Error during body read.", ex);
+                Mail.SendMail(_mailOptions, "Error during body read : " + ex.Message);
+                return;
+            }
 
+            StringBuilder sb = new StringBuilder();
+            bool errorRaised = false;
+            try
+            {
                 if (_fbOptions.ShouldVerifySignature)
                 {
                     var signatures = this.Request.Headers.Where(h => h.Key == "X-Hub-Signature").ToArray();
@@ -71,24 +82,35 @@ namespace FacebookWebHooks.Controllers
                         throw new Exception($"Hash did not match. Expected {myHash}. But header was {headerHash}");
                 }
 
-                StringBuilder sb = new StringBuilder();
                 WriteStory(sb, json);
-                sb.AppendLine();
-                WriteDebug(sb, json);
-
-                string msg = sb.ToString();
-
-                _log.LogVerbose(msg);
-                Mail.SendMail(_mailOptions, msg);
             }
             catch (Exception ex)
             {
-                Mail.SendMail(_mailOptions, "WebHook Error : " + ex.Message);
+                errorRaised = true;
+                sb.AppendLine("Error during webhook processing : " + ex.Message);
+            }
+
+            WriteDebug(sb, json);
+
+            string msg = sb.ToString();
+            if (errorRaised)
+                _log.LogError(msg);
+            else
+                _log.LogVerbose(msg);
+
+            try
+            {
+                Mail.SendMail(_mailOptions, msg);
+            }
+            catch(Exception ex)
+            {
+                _log.LogError("Can't send email", ex);
             }
         }
 
         private void WriteDebug(StringBuilder sb, string json)
         {
+            sb.AppendLine();
             sb.Append("<pre>");
             sb.Append(this.Request.QueryString.ToUriComponent());
             foreach (var header in this.Request.Headers)
