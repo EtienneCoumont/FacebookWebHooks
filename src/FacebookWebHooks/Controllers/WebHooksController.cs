@@ -69,19 +69,8 @@ namespace FacebookWebHooks.Controllers
             {
                 if (_fbOptions.ShouldVerifySignature)
                 {
-                    var signatures = this.Request.Headers.Where(h => h.Key == "X-Hub-Signature").ToArray();
-                    if (signatures.Length == 0)
-                        throw new Exception("X-Hub-Signature not found");
-                    if (signatures.Length >= 2)
-                        throw new Exception("Many X-Hub-Signature found");
-                    string headerHash = signatures[0].Value;
-                    string myHash = Hash.ComputeHash(_fbOptions.AppSecret, json);
-                    if (headerHash == null || myHash == null)
-                        throw new Exception("Null hash");
-                    if (!myHash.Equals(headerHash, StringComparison.OrdinalIgnoreCase))
-                        throw new Exception($"Hash did not match. Expected {myHash}. But header was {headerHash}");
+                    VerifySignature(json);
                 }
-
                 WriteStory(sb, json);
             }
             catch (Exception ex)
@@ -106,6 +95,27 @@ namespace FacebookWebHooks.Controllers
             {
                 _log.LogError("Can't send email", ex);
             }
+        }
+
+        private void VerifySignature(string json)
+        {
+            var signatures = this.Request.Headers.Where(h => h.Key == "X-Hub-Signature").ToArray();
+            if (signatures.Length == 0)
+                throw new Exception("X-Hub-Signature not found");
+            if (signatures.Length >= 2)
+                throw new Exception("Many X-Hub-Signature found");
+            string headerHash = signatures[0].Value;
+            if (headerHash == null)
+                throw new Exception("X-Hub-Signature is null");
+            if (!headerHash.StartsWith("sha1="))
+                throw new Exception("Unexpected format of X-Hub-Signature : " + headerHash);
+            headerHash = headerHash.Substring(5);
+
+            string myHash = Hash.ComputeHash(_fbOptions.AppSecret, json);
+            if (myHash == null)
+                throw new Exception("Unexpected null hash");
+            if (!myHash.Equals(headerHash, StringComparison.OrdinalIgnoreCase))
+                throw new Exception($"Hash did not match. Expected {myHash}. But header was {headerHash}");
         }
 
         private void WriteDebug(StringBuilder sb, string json)
