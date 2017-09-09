@@ -1,6 +1,6 @@
 # FacebookWebHooks
 
-This project is a sample code to show how to use Facebook WebHooks with ASP.Net 5 Web API.
+This project is a sample code to show how to use Facebook WebHooks with ASP.Net Core Web API.
 
 
 ## Summary
@@ -29,6 +29,8 @@ This Web Application catch this request and do something accordingly. For now, i
 ## Facebook Configuration :
 
 ### Create the Webhook
+
+Note : This app has been tested with Facebook Webhooks v2.10
 
 * Go to the Dashboard of your Facebook Application : https://developers.facebook.com/apps/
 * Click the Webhooks menu
