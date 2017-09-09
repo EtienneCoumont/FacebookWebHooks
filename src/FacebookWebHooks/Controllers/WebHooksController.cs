@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Options;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -18,7 +18,7 @@ namespace FacebookWebHooks.Controllers
         MailOptions _mailOptions;
         ILogger<WebHooksController> _log;
 
-        public WebHooksController(IOptions<FacebookOptions> fbOptions, IOptions<MailOptions> mailOptions, 
+        public WebHooksController(IOptions<FacebookOptions> fbOptions, IOptions<MailOptions> mailOptions,
             ILogger<WebHooksController> logger)
         {
             _fbOptions = fbOptions.Value;
@@ -56,7 +56,7 @@ namespace FacebookWebHooks.Controllers
                     json = sr.ReadToEnd();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _log.LogCritical("Error during body read.", ex);
                 Mail.SendMail(_mailOptions, "Error during body read : " + ex.Message);
@@ -85,13 +85,13 @@ namespace FacebookWebHooks.Controllers
             if (errorRaised)
                 _log.LogError(msg);
             else
-                _log.LogVerbose(msg);
+                _log.LogTrace(msg);
 
             try
             {
                 Mail.SendMail(_mailOptions, msg);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _log.LogError("Can't send email", ex);
             }
@@ -185,7 +185,7 @@ namespace FacebookWebHooks.Controllers
                 sb.AppendLine("Value null");
                 return;
             }
-            
+
             switch (value.Item)
             {
                 case "share":

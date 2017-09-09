@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:59466/",
+      "applicationUrl": "http://localhost:64232/",
       "sslPort": 0
     }
   },
@@ -13,14 +13,17 @@
       "launchBrowser": true,
       "launchUrl": "api/webhooks",
       "environmentVariables": {
-        "Hosting:Environment": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "web": {
-      "commandName": "web",
+    "TestLogWebAppCore2": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "api/webhooks",
       "environmentVariables": {
-        "Hosting:Environment": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:64233/"
     }
   }
 }
