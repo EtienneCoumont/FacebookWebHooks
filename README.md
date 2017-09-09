@@ -12,7 +12,7 @@ This Web Application catch this request and do something accordingly. For now, i
 
 ## Prerequisites :
 
-* Visual Studio 2015 (Community Version is downloadable for free)
+* Visual Studio 2017 (Community Version is downloadable for free)
 * An Azure Account (get an evaluation account for free : https://account.windowsazure.com )
 * A Facebook Application (you can create one for free : https://developers.facebook.com/ )
 * You must be Admin of a page on Facebook
