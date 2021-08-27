@@ -2,6 +2,14 @@
 
 This project is a sample code to show how to use Facebook WebHooks with ASP.Net Core Web API.
 
+# Obsolescence
+
+When this project was created, back in 2015, Facebook Webhooks were easy to setup and use. I made this to allow developpers to start a small app from scratch than can do cool stuff, like catching a message posted on a Facebook page, and send it via email, post it to Twitter, or anything you could imagine.
+
+Now, using Facebook Webhooks requires passing through an App Review. IMO, this makes this functionality useful only for pretty big existing Facebook apps. 
+
+Consequently I don't think this github project will be useful to anyone, and I will not update it. I keep it for history only.
+
 
 ## Summary
 
